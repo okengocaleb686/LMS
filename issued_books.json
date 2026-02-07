@@ -1,0 +1,18 @@
+[
+    {
+        "book_id": "1",
+        "user_id": 2,
+        "issue_date": "2026-01-10",
+        "due_date": "2026-01-24",
+        "status": "issued",
+        "id": 1
+    },
+    {
+        "book_id": "2",
+        "user_id": 2,
+        "issue_date": "2026-01-21",
+        "due_date": "2026-02-04",
+        "status": "issued",
+        "id": 2
+    }
+]

@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "user_id": 2,
+        "issue_id": 1,
+        "amount": 2.5,
+        "reason": "Overdue book return",
+        "status": "unpaid",
+        "created_at": "2026-01-19 09:34:50"
+    }
+]

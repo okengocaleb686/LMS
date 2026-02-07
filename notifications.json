@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "user_id": 2,
+        "title": "Welcome to Library Management System",
+        "message": "Thank you for registering! You can now browse and reserve books.",
+        "type": "info",
+        "is_read": false,
+        "created_at": "2026-01-20 09:34:50"
+    }
+]

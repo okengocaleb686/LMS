@@ -1,0 +1,10 @@
+[
+    {
+        "id": 1,
+        "user_id": 2,
+        "book_id": 1,
+        "reservation_date": "2026-01-20 09:34:50",
+        "status": "active",
+        "expiry_date": "2026-01-27 09:34:50"
+    }
+]

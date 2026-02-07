@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "email": "admin@gmail.com",
+        "password": "$2y$10$O\/I.K6l9GFzPcekM5ArTfu7SslJ8Y5rmOPTDnaH9OGGhwQbCyCV8K",
+        "name": "Administrator",
+        "type": "admin",
+        "profile_pic": null,
+        "created_at": "2026-01-09 15:05:52"
+    },
+    {
+        "id": 2,
+        "email": "user@gmail.com",
+        "password": "$2y$10$kBPzm4.WpS.XCFVTnz6bY.e70p3w3\/raRNSJhw5tMF2Jign94JtJu",
+        "name": "Regular User",
+        "type": "user",
+        "profile_pic": null,
+        "created_at": "2026-01-09 15:05:52"
+    }
+]

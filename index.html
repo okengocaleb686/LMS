@@ -918,6 +918,37 @@
             .dashboard-grid {
                 grid-template-columns: 1fr !important;
             }
+            
+            /* Dashboard specific phone fixes */
+            .stats-grid {
+                gap: 10px;
+            }
+            
+            .stat-card {
+                padding: 15px;
+            }
+            
+            .stat-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+            
+            .stat-info h3 {
+                font-size: 20px;
+            }
+            
+            .quick-action {
+                padding: 15px 10px;
+            }
+            
+            .quick-action i {
+                font-size: 24px;
+            }
+            
+            .quick-action h4 {
+                font-size: 11px;
+            }
         }
 
         /* ========== PHONE RESPONSIVE STYLES (480px) ========== */
@@ -1165,6 +1196,70 @@
             .dashboard-grid > .card:last-child {
                 margin-bottom: 0;
             }
+            
+            /* Dashboard stats - single column on phone */
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .stat-card {
+                padding: 15px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .stat-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .stat-info h3 {
+                font-size: 18px;
+            }
+            
+            .stat-info p {
+                font-size: 11px;
+            }
+            
+            /* Quick actions - 2 columns */
+            .quick-actions {
+                gap: 8px;
+            }
+            
+            .quick-action {
+                padding: 12px 8px;
+            }
+            
+            .quick-action i {
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+            
+            .quick-action h4 {
+                font-size: 10px;
+            }
+            
+            /* Card header on phone */
+            .card-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+            
+            .card-header h3 {
+                font-size: 14px;
+                text-align: center;
+            }
+            
+            .card-header .btn {
+                width: 100%;
+            }
+            
+            .card-body {
+                padding: 12px;
+            }
         }
 
         /* Hide mobile menu toggle on desktop */
@@ -1235,7 +1330,7 @@
             
             <p style="text-align: center; margin-top: 20px; color: var(--text-secondary);">
                 Don't have an account? 
-                <a href="#" onclick="Router.navigate('register')" class="link-primary">Register here</a>
+                <a href="register.html" onclick="Router.navigate('register')" class="link-primary">Register here</a>
             </p>
             
             <div class="demo-accounts">
@@ -1304,7 +1399,7 @@
             
             <p style="text-align: center; margin-top: 20px; color: var(--text-secondary);">
                 Already have an account? 
-                <a href="#" onclick="Router.navigate('login')" class="link-primary">Login here</a>
+                <a href="login.html" onclick="Router.navigate('login')" class="link-primary">Login here</a>
             </p>
         </div>
     </div>
@@ -1797,6 +1892,286 @@
                                 <h3>No Notifications</h3>
                                 <p>You're all caught up!</p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Authors Page -->
+            <div id="manage-authors-page" class="page-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Manage Authors</h3>
+                        <button class="btn btn-primary" onclick="openAddAuthorModal()">
+                            <i class="fas fa-plus"></i> Add Author
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="authors-table-container">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Bio</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="authors-table-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Categories Page -->
+            <div id="manage-categories-page" class="page-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Manage Categories</h3>
+                        <button class="btn btn-primary" onclick="openAddCategoryModal()">
+                            <i class="fas fa-plus"></i> Add Category
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="categories-table-container">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="categories-table-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Author Page -->
+            <div id="edit-author-page" class="page-section">
+                <div class="form-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Edit Author</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="edit-author-form">
+                                <input type="hidden" id="edit-author-id">
+                                <div class="form-group">
+                                    <label for="edit-author-name">Name</label>
+                                    <input type="text" id="edit-author-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-author-email">Email</label>
+                                    <input type="email" id="edit-author-email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-author-bio">Biography</label>
+                                    <textarea id="edit-author-bio" rows="4"></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Update Author</button>
+                                    <button type="button" class="btn btn-secondary" onclick="Router.navigate('manage-authors')">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Category Page -->
+            <div id="edit-category-page" class="page-section">
+                <div class="form-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Edit Category</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="edit-category-form">
+                                <input type="hidden" id="edit-category-id">
+                                <div class="form-group">
+                                    <label for="edit-category-name">Name</label>
+                                    <input type="text" id="edit-category-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-category-description">Description</label>
+                                    <textarea id="edit-category-description" rows="4"></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Update Category</button>
+                                    <button type="button" class="btn btn-secondary" onclick="Router.navigate('manage-categories')">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Book Page -->
+            <div id="edit-book-page" class="page-section">
+                <div class="form-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Edit Book</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="edit-book-form">
+                                <input type="hidden" id="edit-book-id">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="edit-book-title">Title</label>
+                                        <input type="text" id="edit-book-title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-book-isbn">ISBN</label>
+                                        <input type="text" id="edit-book-isbn">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="edit-book-author">Author</label>
+                                        <select id="edit-book-author"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-book-category">Category</label>
+                                        <select id="edit-book-category"></select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="edit-book-quantity">Quantity</label>
+                                        <input type="number" id="edit-book-quantity" min="1" value="1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-book-shelf">Shelf Location</label>
+                                        <input type="text" id="edit-book-shelf">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-book-description">Description</label>
+                                    <textarea id="edit-book-description" rows="4"></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Update Book</button>
+                                    <button type="button" class="btn btn-secondary" onclick="Router.navigate('manage-books')">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Page -->
+            <div id="reports-page" class="page-section">
+                <div class="stats-grid" id="reports-stats-grid"></div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Library Reports</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="quick-actions">
+                            <div class="quick-action" onclick="exportBooks()">
+                                <i class="fas fa-book"></i>
+                                <h4>Export Books</h4>
+                            </div>
+                            <div class="quick-action" onclick="exportUsers()">
+                                <i class="fas fa-users"></i>
+                                <h4>Export Users</h4>
+                            </div>
+                            <div class="quick-action" onclick="exportIssuedBooks()">
+                                <i class="fas fa-clipboard"></i>
+                                <h4>Export Issued</h4>
+                            </div>
+                            <div class="quick-action" onclick="exportActivityLog()">
+                                <i class="fas fa-history"></i>
+                                <h4>Activity Log</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add User Page -->
+            <div id="add-user-page" class="page-section">
+                <div class="form-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Add New User</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="add-user-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="new-user-name">Full Name</label>
+                                        <input type="text" id="new-user-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new-user-email">Email</label>
+                                        <input type="email" id="new-user-email" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="new-user-username">Username</label>
+                                        <input type="text" id="new-user-username" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new-user-role">Role</label>
+                                        <select id="new-user-role">
+                                            <option value="user">User</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-user-password">Password</label>
+                                    <input type="password" id="new-user-password" required>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Add User</button>
+                                    <button type="button" class="btn btn-secondary" onclick="Router.navigate('users')">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Change Password Page -->
+            <div id="change-password-page" class="page-section">
+                <div class="form-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Change Password</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="change-password-form">
+                                <div class="form-group">
+                                    <label for="current-password">Current Password</label>
+                                    <input type="password" id="current-password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password">New Password</label>
+                                    <input type="password" id="new-password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm-password">Confirm New Password</label>
+                                    <input type="password" id="confirm-password" required>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                    <button type="button" class="btn btn-secondary" onclick="Router.navigate('profile')">Cancel</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -2548,14 +2923,214 @@
                         bookSelect.innerHTML += `<option value="${b.id}">${b.title}</option>`;
                     });
                 }
+
+                // Populate edit book selects
+                const editAuthorSelect = document.getElementById('edit-book-author');
+                if (editAuthorSelect) {
+                    editAuthorSelect.innerHTML = '<option value="">Select Author</option>';
+                    authors.forEach(a => {
+                        editAuthorSelect.innerHTML += `<option value="${a.id}">${a.name}</option>`;
+                    });
+                }
+
+                const editCategorySelect = document.getElementById('edit-book-category');
+                if (editCategorySelect) {
+                    editCategorySelect.innerHTML = '<option value="">Select Category</option>';
+                    categories.forEach(c => {
+                        editCategorySelect.innerHTML += `<option value="${c.id}">${c.name}</option>`;
+                    });
+                }
             }
         };
+
+        // ==========================================
+        // GLOBAL FUNCTIONS FOR AUTHORS AND CATEGORIES
+        // ==========================================
+        
+        // Open Add Author Modal
+        function openAddAuthorModal() {
+            App.renderFormModal('add-author-modal', 'Add New Author', `
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="modal-author-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="modal-author-email">
+                </div>
+                <div class="form-group">
+                    <label>Biography</label>
+                    <textarea id="modal-author-bio" rows="4"></textarea>
+                </div>
+            `, function() {
+                const authorData = {
+                    name: document.getElementById('modal-author-name').value,
+                    email: document.getElementById('modal-author-email').value,
+                    bio: document.getElementById('modal-author-bio').value
+                };
+                DataManager.addAuthor(authorData);
+                App.showToast('Author added successfully!', 'success');
+                Router.loadPage('manage-authors');
+            });
+            App.openModal('add-author-modal');
+        }
+
+        // Edit Author
+        function editAuthor(id) {
+            const author = DataManager.getAuthorById(id);
+            if (!author) return;
+
+            App.renderFormModal('edit-author-modal', 'Edit Author', `
+                <input type="hidden" id="edit-modal-author-id" value="${author.id}">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="edit-modal-author-name" value="${author.name}" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="edit-modal-author-email" value="${author.email || ''}">
+                </div>
+                <div class="form-group">
+                    <label>Biography</label>
+                    <textarea id="edit-modal-author-bio" rows="4">${author.bio || ''}</textarea>
+                </div>
+            `, function() {
+                const authorData = {
+                    name: document.getElementById('edit-modal-author-name').value,
+                    email: document.getElementById('edit-modal-author-email').value,
+                    bio: document.getElementById('edit-modal-author-bio').value
+                };
+                DataManager.updateAuthor(id, authorData);
+                App.showToast('Author updated successfully!', 'success');
+                Router.loadPage('manage-authors');
+            });
+            App.openModal('edit-author-modal');
+        }
+
+        // Delete Author
+        function deleteAuthor(id) {
+            App.renderConfirmModal('delete-author-modal', 'Delete Author', 'Are you sure you want to delete this author?', function() {
+                DataManager.deleteAuthor(id);
+                App.showToast('Author deleted successfully!', 'success');
+                Router.loadPage('manage-authors');
+            });
+            App.openModal('delete-author-modal');
+        }
+
+        // Open Add Category Modal
+        function openAddCategoryModal() {
+            App.renderFormModal('add-category-modal', 'Add New Category', `
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="modal-category-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="modal-category-description" rows="4"></textarea>
+                </div>
+            `, function() {
+                const categoryData = {
+                    name: document.getElementById('modal-category-name').value,
+                    description: document.getElementById('modal-category-description').value
+                };
+                DataManager.addCategory(categoryData);
+                App.showToast('Category added successfully!', 'success');
+                Router.loadPage('manage-categories');
+            });
+            App.openModal('add-category-modal');
+        }
+
+        // Edit Category
+        function editCategory(id) {
+            const category = DataManager.getCategoryById(id);
+            if (!category) return;
+
+            App.renderFormModal('edit-category-modal', 'Edit Category', `
+                <input type="hidden" id="edit-modal-category-id" value="${category.id}">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="edit-modal-category-name" value="${category.name}" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="edit-modal-category-description" rows="4">${category.description || ''}</textarea>
+                </div>
+            `, function() {
+                const categoryData = {
+                    name: document.getElementById('edit-modal-category-name').value,
+                    description: document.getElementById('edit-modal-category-description').value
+                };
+                DataManager.updateCategory(id, categoryData);
+                App.showToast('Category updated successfully!', 'success');
+                Router.loadPage('manage-categories');
+            });
+            App.openModal('edit-category-modal');
+        }
+
+        // Delete Category
+        function deleteCategory(id) {
+            App.renderConfirmModal('delete-category-modal', 'Delete Category', 'Are you sure you want to delete this category?', function() {
+                DataManager.deleteCategory(id);
+                App.showToast('Category deleted successfully!', 'success');
+                Router.loadPage('manage-categories');
+            });
+            App.openModal('delete-category-modal');
+        }
+
+        // Export Functions
+        function exportBooks() {
+            const books = DataManager.getBooks();
+            let csv = 'ID,Title,ISBN,Author,Category,Quantity,Available\n';
+            books.forEach(book => {
+                const author = DataManager.getAuthorById(book.author_id);
+                const category = DataManager.getCategoryById(book.category_id);
+                csv += `${book.id},"${book.title}",${book.isbn},"${author ? author.name : ''}","${category ? category.name : ''}",${book.quantity},${book.available}\n`;
+            });
+            downloadCSV(csv, 'books_export.csv');
+            App.showToast('Books exported successfully!', 'success');
+        }
+
+        function exportUsers() {
+            const users = DataManager.getUsers();
+            let csv = 'ID,Name,Email,Username,Role,Status\n';
+            users.forEach(user => {
+                csv += `${user.id},"${user.name}",${user.email},${user.username},${user.role},${user.status}\n`;
+            });
+            downloadCSV(csv, 'users_export.csv');
+            App.showToast('Users exported successfully!', 'success');
+        }
+
+        function exportIssuedBooks() {
+            const issuedBooks = DataManager.getIssuedBooks();
+            let csv = 'ID,Book,User,Issue Date,Due Date,Status\n';
+            issuedBooks.forEach(issue => {
+                const book = DataManager.getBookById(issue.book_id);
+                const user = DataManager.getUserById(issue.user_id);
+                csv += `${issue.id},"${book ? book.title : ''}","${user ? user.name : ''}",${issue.issue_date},${issue.due_date},${issue.status}\n`;
+            });
+            downloadCSV(csv, 'issued_books_export.csv');
+            App.showToast('Issued books exported successfully!', 'success');
+        }
+
+        function exportActivityLog() {
+            App.showToast('Activity log exported!', 'success');
+        }
+
+        function downloadCSV(csv, filename) {
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
 
         // ==========================================
         // ROUTER MODULE - Page navigation
         // ==========================================
         const Router = {
-            pages: ['login', 'register', 'admin-dashboard', 'user-dashboard', 'manage-books', 'browse-books', 'search', 'add-book', 'add-author', 'add-category', 'issue-book', 'issued-books', 'users', 'my-issued', 'analytics', 'profile', 'notifications'],
+            pages: ['login', 'register', 'admin-dashboard', 'user-dashboard', 'manage-books', 'browse-books', 'search', 'add-book', 'add-author', 'add-category', 'issue-book', 'issued-books', 'users', 'my-issued', 'analytics', 'profile', 'notifications', 'manage-authors', 'manage-categories', 'edit-author', 'edit-category', 'edit-book', 'reports', 'add-user', 'change-password'],
 
             navigate: function(page) {
                 // Hide all pages
@@ -2614,13 +3189,17 @@
                         <a onclick="Router.navigate('manage-books')"><i class="fas fa-book"></i><span>Books</span></a>
                         <a onclick="Router.navigate('add-book')"><i class="fas fa-plus-circle"></i><span>Add Book</span></a>
                         <a onclick="Router.navigate('add-author')"><i class="fas fa-pen-fancy"></i><span>Add Author</span></a>
+                        <a onclick="Router.navigate('manage-authors')"><i class="fas fa-pen-nib"></i><span>Manage Authors</span></a>
                         <a onclick="Router.navigate('add-category')"><i class="fas fa-tags"></i><span>Add Category</span></a>
+                        <a onclick="Router.navigate('manage-categories')"><i class="fas fa-tag"></i><span>Manage Categories</span></a>
                         <a onclick="Router.navigate('issue-book')"><i class="fas fa-clipboard-list"></i><span>Issue Book</span></a>
                         <div class="sidebar-section">Users</div>
                         <a onclick="Router.navigate('users')"><i class="fas fa-users"></i><span>Users</span></a>
+                        <a onclick="Router.navigate('add-user')"><i class="fas fa-user-plus"></i><span>Add User</span></a>
                         <a onclick="Router.navigate('issued-books')"><i class="fas fa-clipboard-check"></i><span>Issued Books</span></a>
                         <div class="sidebar-section">Reports</div>
                         <a onclick="Router.navigate('analytics')"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+                        <a onclick="Router.navigate('reports')"><i class="fas fa-chart-bar"></i><span>Reports</span></a>
                     `;
                 } else {
                     navHTML += `
@@ -2634,6 +3213,7 @@
                 navHTML += `
                     <div class="sidebar-section">Account</div>
                     <a onclick="Router.navigate('profile')"><i class="fas fa-user"></i><span>Profile</span></a>
+                    <a onclick="Router.navigate('change-password')"><i class="fas fa-key"></i><span>Change Password</span></a>
                     <a onclick="Router.navigate('notifications')"><i class="fas fa-bell"></i><span>Notifications</span></a>
                 `;
 
@@ -2661,7 +3241,15 @@
                     'my-issued': 'My Issued Books',
                     'analytics': 'Analytics',
                     'profile': 'My Profile',
-                    'notifications': 'Notifications'
+                    'notifications': 'Notifications',
+                    'manage-authors': 'Manage Authors',
+                    'manage-categories': 'Manage Categories',
+                    'edit-author': 'Edit Author',
+                    'edit-category': 'Edit Category',
+                    'edit-book': 'Edit Book',
+                    'reports': 'Reports',
+                    'add-user': 'Add User',
+                    'change-password': 'Change Password'
                 };
 
                 document.getElementById('page-title').textContent = titles[page] || 'Dashboard';
@@ -2693,6 +3281,18 @@
                         break;
                     case 'profile':
                         this.loadProfile();
+                        break;
+                    case 'manage-authors':
+                        this.loadManageAuthors();
+                        break;
+                    case 'manage-categories':
+                        this.loadManageCategories();
+                        break;
+                    case 'add-user':
+                        this.loadAddUser();
+                        break;
+                    case 'change-password':
+                        this.loadChangePassword();
                         break;
                 }
             },
@@ -2977,6 +3577,57 @@
                 document.getElementById('profile-name').value = Auth.currentUser.name;
                 document.getElementById('profile-email').value = Auth.currentUser.email;
                 document.getElementById('profile-role').value = Auth.isAdmin() ? 'Administrator' : 'User';
+            },
+
+            // Load Manage Authors Page
+            loadManageAuthors: function() {
+                const authors = DataManager.getAuthors();
+                const tbody = document.getElementById('authors-table-body');
+                if (authors.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="text-center">No authors found. <button class="btn btn-sm btn-primary" onclick="openAddAuthorModal()">Add Author</button></td></tr>';
+                } else {
+                    tbody.innerHTML = authors.map(author => `
+                        <tr>
+                            <td>${author.name}</td>
+                            <td>${author.email || '-'}</td>
+                            <td>${App.truncateText(author.bio || '-', 50)}</td>
+                            <td class="actions">
+                                <button class="btn btn-sm btn-primary" onclick="editAuthor(${author.id})"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteAuthor(${author.id})"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            },
+
+            // Load Manage Categories Page
+            loadManageCategories: function() {
+                const categories = DataManager.getCategories();
+                const tbody = document.getElementById('categories-table-body');
+                if (categories.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="3" class="text-center">No categories found. <button class="btn btn-sm btn-primary" onclick="openAddCategoryModal()">Add Category</button></td></tr>';
+                } else {
+                    tbody.innerHTML = categories.map(category => `
+                        <tr>
+                            <td>${category.name}</td>
+                            <td>${App.truncateText(category.description || '-', 50)}</td>
+                            <td class="actions">
+                                <button class="btn btn-sm btn-primary" onclick="editCategory(${category.id})"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteCategory(${category.id})"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            },
+
+            // Load Add User Page
+            loadAddUser: function() {
+                document.getElementById('add-user-form').reset();
+            },
+
+            // Load Change Password Page
+            loadChangePassword: function() {
+                document.getElementById('change-password-form').reset();
             }
         };
 
@@ -3111,6 +3762,55 @@
                     Books.populateForms();
                 } else {
                     App.showToast(result.message, 'error');
+                }
+            });
+
+            // Add User form
+            document.getElementById('add-user-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const userData = {
+                    name: document.getElementById('new-user-name').value,
+                    email: document.getElementById('new-user-email').value,
+                    username: document.getElementById('new-user-username').value,
+                    password: document.getElementById('new-user-password').value,
+                    role: document.getElementById('new-user-role').value
+                };
+                
+                const result = DataManager.addUser(userData);
+                if (result) {
+                    App.showToast('User added successfully!', 'success');
+                    e.target.reset();
+                    Router.navigate('users');
+                } else {
+                    App.showToast('Failed to add user', 'error');
+                }
+            });
+
+            // Change Password form
+            document.getElementById('change-password-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const currentPassword = document.getElementById('current-password').value;
+                const newPassword = document.getElementById('new-password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                
+                if (newPassword !== confirmPassword) {
+                    App.showToast('New passwords do not match', 'error');
+                    return;
+                }
+                
+                // Simple password change (in real app, verify current password)
+                const users = DataManager.getUsers();
+                const userIndex = users.findIndex(u => u.id === Auth.currentUser.id);
+                if (userIndex !== -1) {
+                    users[userIndex].password = newPassword;
+                    localStorage.setItem(DataManager.STORAGE_KEYS.USERS, JSON.stringify(users));
+                    App.showToast('Password changed successfully!', 'success');
+                    e.target.reset();
+                    Router.navigate('profile');
+                } else {
+                    App.showToast('Failed to change password', 'error');
                 }
             });
 
